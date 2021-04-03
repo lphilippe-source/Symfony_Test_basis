@@ -1,0 +1,34 @@
+<h1>Liste des pays</h1>
+{%block stylesheets %}
+ {# <link rel="stylesheet" type="text/css" href="css/main.css"> #}
+        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/main.css') }}">
+        {% endblock %}
+{% block body%}
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Population</th>
+            <th>Drapeau</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for country in countries %}
+        
+        <tr>
+            <td>{{country.id }}</td>
+            {# <td><a href="/test8/{{ country.id }}">{{country.name }}</a></td> #}
+            <td><a href="{{path('country_detail',{id: country.id})
+             }}">{{country.name }}</a></td>
+            <td>{{country.population}}</td>
+            <td><img class="country" src="{{country.fakeFlag()}}" alt="{{ country.name }}">
+            {# <p>{{ country.fakeFlag() }}</p> #}
+            </td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+{% endblock %}
